@@ -1,13 +1,14 @@
-local TotalUtil = require(game:GetService('ReplicatedStorage'):WaitForChild('Shared'):WaitForChild('MainModule'))
+local TotalUtil = require(game:GetService('ReplicatedStorage'):WaitForChild('Shared'):WaitForChild('TotalUtil'))
 --local TestModule = require(game:GetService('ReplicatedStorage'):WaitForChild('Shared'):WaitForChild('TestModule'))
+--local TweenWrapper = require(game:GetService('ReplicatedStorage'):WaitForChild('Shared'):WaitForChild('TweenWrapper'))
 
 task.wait(1.5)
-print('RUN')
+print('Init')
+local v = Instance.new('NumberValue')
+v.Value = 0
 
-local tweenInfo = TweenInfo.new(3)
-
-TotalUtil.NumberTween(1, tweenInfo, 10):Changed(function(value)
+TotalUtil.Tween(v, TweenInfo.new(3), {Value = 10}):Changed(function(value)
     print(value)
-end):Finished(function(re)
-    print(re)
-end):Start()
+end):Finished(function()
+    print('Done!')
+end):Await()
